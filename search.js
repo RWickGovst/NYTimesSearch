@@ -1,14 +1,4 @@
-$("#run-search").on("click", function (e) {
-    e.preventDefault();
-    // console.log("hi");
-    var term = $("#search-term").val().trim();
-    // console.log(term);
-    var start = $("#start-year").val();
-    var end = $("#end-year").val();
 
-    console.log(start + end);
-    var num = $("#article-count").val();
-    // console.log(num);
 
 
 
