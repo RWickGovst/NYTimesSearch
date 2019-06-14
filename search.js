@@ -1,39 +1,41 @@
+// worked with the video
+// 
+// ---------------------------------------
+// variables
+var queryTerm = "";
+var numResults = 0;
+var startYear = 0;
+var endYear = 0;
 
 
+var authKey = "ahJHkqfNgN6OcOzqeCRTjmoyFpgO8SD4";
+// if (start === "" || end === "") {
+//     start = "20120101";
+//     end = "20160309";
 
+// url base ----------
+    var queryURLBase = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + authKey;
+    
+    var articleCounter = 0;
 
-    var apiKey = "ahJHkqfNgN6OcOzqeCRTjmoyFpgO8SD4";
-    if (start === "" || end === "") {
-        start = "20120101";
-        end = "20160309";
-
-        var query = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + term + "&api-key=" + apiKey + "&begin_date=" + start + "&end_date=" + end + "";
-        console.log(query);
-
+    function runQuery(numArticles, queryURL) {
+        // ajax function
         $.ajax({
             url: query,
             method: "GET"
-        }).then(function (res) {
-            console.log(res.response.docs);
-            for (let i = 0; i < num; i++) {
-                $("#article-section").append(res.response.docs[i]);
-                console.log(res.response.docs[i]);
-            }
 
+        }).done(function (NYTData) {
+            console.log(queryURL);
+            console.log(NYTData);
+            
+    $("#searchBtn").on("click", function () {
+        runQuery(10, "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=ahJHkqfNgN6OcOzqeCRTjmoyFpgO8SD4&q=Obama");
+        // alert("test");
+        // term = $("#search").val().trim();
+        // console.log(term);
+        return false;
+    })
         })
-    }
-    else {
-        start = start + "0101";
-        end = end + "1231";
-        var query = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + term + "&api-key=" + apiKey + "&begin_date=" + start + "&end_date=" + end + "";
-        console.log(query);
-
-        $.ajax({
-            url: query,
-            method: "GET"
-        }).then(function (res) {
-            console.log(res);
-
-        })
-    }
-})
+}
+// break down the data into the fields needed
+// dealing with edge cases
